@@ -6,17 +6,18 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-user', url: 'https://github.com/devopsdeepdive/maven-web-project.git']]]) 
             }
         }
-		stage('Compile') { 
+	stage('Compile') { 
             steps {
               sh 'mvn compile'
             }
         }
-		stage('Test') { 
+	stage('Test') { 
             steps {
               sh 'mvn test'
+              sleep 300
             }
         }
-		stage('Package') { 
+	stage('Package') { 
             steps {
               sh 'mvn package'
             }
